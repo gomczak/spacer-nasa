@@ -1,4 +1,7 @@
 # spacer-nsa
+Project from yt vue course. 
+This app uses NASA image API to fetch images and display them
+after passing search query.
 
 ## Project setup
 ```

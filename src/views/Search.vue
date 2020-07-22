@@ -41,7 +41,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    }, 500),
+    }, 400),
   },
 };
 </script>

@@ -5,7 +5,7 @@
                 <img :src="photo" >
             </div>
             <div class="description">
-                <h2 class="titile">{{ title }}</h2>
+                <h2 class="title">{{ title }}</h2>
                 <p class="description">
                     {{ description }}
                 </p>
@@ -88,7 +88,7 @@ export default {
         }
     }
 
-    .innerWrappper {
+    .innerWrapper {
         display: flex;
         height: 100%;
         padding: 50px;
@@ -112,6 +112,7 @@ export default {
 
             img {
                 width: 100%;
+                height: auto;
             }
         }
 

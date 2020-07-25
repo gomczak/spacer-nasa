@@ -10,9 +10,10 @@
     <SearchInput v-model="searchValue" @input="handleInput" :dark="step ===1"/>
     <div class="results" v-if="results && !loading && step === 1">
       <Item v-for="item in results" :item="item" :key="item.data[0].nasa_id"
-      @click="handleModalOpen" />
+      @click.native="handleModalOpen(item)" />
     </div>
-    <Modal v-if="modalOpen"/>
+    <div class="loader" v-if="step === 1 && loading"/>
+    <Modal v-if="modalOpen" :item="modalItem" @closeModal="modalOpen = false"/>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       modalOpen: false,
+      modalItem: null,
       loading: false,
       step: 0,
       searchValue: '',
@@ -46,6 +48,10 @@ export default {
     };
   },
   methods: {
+    handleModalOpen(item) {
+      this.modalOpen = true;
+      this.modalItem = item;
+    },
     // eslint-disable-next-line
     handleInput: debounce(function () {
       this.loading = true;
@@ -69,6 +75,8 @@ export default {
 
   * {
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
@@ -107,6 +115,42 @@ export default {
   }
 }
 
+  .loader {
+    margin-top: 100px;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+
+    @media (min-width: 768px) {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  .loader:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #1e3d4a;
+    border-color: #1e3d4a transparent #1e3d4a transparent;
+    animation: loading 1.2s linear infinite;
+
+    @media (min-width: 768px) {
+      width: 90px;
+      height: 90px;
+  }
+  }
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .logo {
     position: absolute;
     top: 30px;
@@ -119,7 +163,9 @@ export default {
     grid-gap: 20px;
 
     @media (min-width: 768px) {
+      width: 90%;
       grid-template-columns: 1fr 1fr 1fr;
     }
+
   }
 </style>

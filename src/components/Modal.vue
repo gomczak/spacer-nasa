@@ -110,10 +110,15 @@ export default {
             height: auto;
             background: black;
 
-            img {
-                width: 100%;
-                height: auto;
-            }
+            // img {
+            //     width: 100%;
+            //     height: auto;
+            // }
+        }
+
+        img {
+            width: 100%;
+            max-height: 500px;
         }
 
         .description {

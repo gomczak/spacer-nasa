@@ -100,7 +100,7 @@ export default {
             flex-direction: row;
 
             .photo {
-                min-width: 50%;
+                max-width: 50%;
                 margin-right: 20px;
             }
         }
@@ -108,17 +108,12 @@ export default {
         .photo {
             width: 100%;
             height: auto;
-            background: black;
+            // background: black;
 
-            // img {
-            //     width: 100%;
-            //     height: auto;
-            // }
-        }
-
-        img {
-            width: 100%;
-            max-height: 500px;
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
 
         .description {
